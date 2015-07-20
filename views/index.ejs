@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="catagolo">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body ng-controller="FilmesController">
+
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="text-center">Lista de filmes</h1>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<ul class="listaFilmes">
+				<li ng-repeat="filme in filmes">
+					<a href="#" class="panel-title text-center" ng-click="mostraFilme(filme)">{{filme.titulo}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-4" ng-show="filmeSelecionado">
+			<dl>
+				<dd>Titulo</dd>
+				<dt>{{filmeSelecionado.titulo}}</dt>
+
+				<dd>Diretor</dd>
+				<dt>{{filmeSelecionado.diretor}}</dt>
+
+				<dd>Ano</dd>
+				<dt>{{filmeSelecionado.ano}}</dt>
+			</dl>
+
+			<a href="#" class="btn btn-danger" ng-click="deletaFilme(filmeSelecionado)">Deletar *{{filmeSelecionado.titulo}}*</a>
+			<a href="#" class="btn btn-primary" ng-click="editaFilme(filmeSelecionado)">Editar *{{filmeSelecionado.titulo}}*</a>
+		</div>
+
+		<form class="col-md-4" ng-submit="enviaFilme()">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label>Titulo:</label>
+					<input type="text" class="form-control" ng-model="filme.titulo">
+				</div>
+		
+				<div class="form-group">
+					<label>Diretor:</label>
+					<input type="text" class="form-control" ng-model="filme.diretor">
+				</div>
+				
+				<div class="form-group">
+					<label>Ano:</label>
+					<input type="text" class="form-control" ng-model="filme.ano">
+				</div>
+
+				<input type="submit" value="Enviar" class="btn btn-primary">
+			</div>
+		</form>
+	</div>
+	
+</div>
+
+	<script src="/javascripts/angular.min.js"></script>
+	<script src="/javascripts/main.js"></script>
+	<script src="/javascripts/filmesController.js"></script>
+</body>
+</html>
